@@ -1,20 +1,42 @@
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import Link from "next/link";
+import SingleSidebar from "@/components/home/SingleSidebar";
+
 function Business() {
+    const businessPosts = useSelector(state => state.blogSlice.business)
+    const randomNum = Math.floor(Math.random() * 9) + 1;
+    let sideBarPosts = [];
+    const [hydrated, setHydrated] = useState(false);
+    useEffect(() => {
+        setHydrated(true);
+    },[])
+    const slug_id= hydrated && businessPosts[randomNum].id
+
+    for (let i = 0; i < 6; i++) {
+        // Get a random index from the remaining elements in the array
+        let randomIndex = Math.floor(Math.random() * businessPosts.length);
+        let selectedObject = businessPosts[randomIndex];
+
+        sideBarPosts.push(selectedObject);
+    }
+
     return(
         <section className="category-section">
             <div className="container" data-aos="fade-up">
                 <div className="section-header d-flex justify-content-between align-items-center mb-5">
                     <h2>Business</h2>
                     <div>
-                        <a href="category.html" className="more">
+                        <Link href="single/business" className="more">
                             See All Business
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-9 order-md-2">
                         <div className="d-lg-flex post-entry-2">
-                            <a
-                                href="single-post.html"
+                            <Link
+                                href={`/post/${slug_id}`}
                                 className="me-4 thumbnail d-inline-block mb-4 mb-lg-0"
                             >
                                 <img
@@ -22,17 +44,16 @@ function Business() {
                                     alt=""
                                     className="img-fluid"
                                 />
-                            </a>
+                            </Link>
                             <div>
                                 <div className="post-meta">
                                     <span className="date">Business</span>
                                     <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                 </div>
                                 <h3>
-                                    <a href="single-post.html">
-                                        What is the son of Football Coach John Gruden, Deuce Gruden
-                                        doing Now?
-                                    </a>
+                                    <Link href={`/post/${slug_id}`}>
+                                        {hydrated && businessPosts[randomNum].title}
+                                    </Link>
                                 </h3>
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -40,40 +61,28 @@ function Business() {
                                     fugiat voluptates quas, nobis error deserunt aliquam temporibus
                                     sapiente, laudantium dolorum itaque libero eos deleniti?
                                 </p>
-                                <div className="d-flex align-items-center author">
-                                    <div className="photo">
-                                        <img
-                                            src="/img/person-4.jpg"
-                                            alt=""
-                                            className="img-fluid"
-                                        />
-                                    </div>
-                                    <div className="name">
-                                        <h3 className="m-0 p-0">Wade Warren</h3>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-lg-4">
                                 <div className="post-entry-1 border-bottom">
-                                    <a href="single-post.html">
+                                    <Link href={`/post/${slug_id}`}>
                                         <img
                                             src="/img/post-landscape-5.jpg"
                                             alt=""
                                             className="img-fluid"
                                         />
-                                    </a>
+                                    </Link>
                                     <div className="post-meta">
                                         <span className="date">Business</span>
                                         <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                     </div>
                                     <h2 className="mb-2">
-                                        <a href="single-post.html">
-                                            11 Work From Home Part-Time Jobs You Can Do Now
-                                        </a>
+                                        <Link href={`/post/${slug_id}`}>
+                                            {hydrated && businessPosts[randomNum].title}
+                                        </Link>
                                     </h2>
-                                    <span className="author mb-3 d-block">Jenny Wilson</span>
                                     <p className="mb-4 d-block">
                                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
                                         temporibus repudiandae, inventore pariatur numquam cumque
@@ -86,32 +95,30 @@ function Business() {
                                         <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                     </div>
                                     <h2 className="mb-2">
-                                        <a href="single-post.html">
-                                            5 Great Startup Tips for Female Founders
-                                        </a>
+                                        <Link href={`/post/${slug_id}`}>
+                                            {hydrated && businessPosts[randomNum].title}
+                                        </Link>
                                     </h2>
-                                    <span className="author mb-3 d-block">Jenny Wilson</span>
                                 </div>
                             </div>
                             <div className="col-lg-8">
                                 <div className="post-entry-1">
-                                    <a href="single-post.html">
+                                    <Link href={`/post/${slug_id}`}>
                                         <img
                                             src="/img/post-landscape-7.jpg"
                                             alt=""
                                             className="img-fluid"
                                         />
-                                    </a>
+                                    </Link>
                                     <div className="post-meta">
                                         <span className="date">Business</span>
                                         <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                     </div>
                                     <h2 className="mb-2">
-                                        <a href="single-post.html">
-                                            How to Avoid Distraction and Stay Focused During Video Calls?
-                                        </a>
+                                        <Link href={`/post/${slug_id}`}>
+                                            {hydrated && businessPosts[randomNum].title}
+                                        </Link>
                                     </h2>
-                                    <span className="author mb-3 d-block">Jenny Wilson</span>
                                     <p className="mb-4 d-block">
                                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
                                         temporibus repudiandae, inventore pariatur numquam cumque
@@ -122,79 +129,11 @@ function Business() {
                         </div>
                     </div>
                     <div className="col-md-3">
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    How to Avoid Distraction and Stay Focused During Video Calls?
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    17 Pictures of Medium Length Hair in Layers That Will Inspire Your
-                                    New Haircut
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    9 Half-up/half-down Hairstyles for Long and Medium Hair
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    Life Insurance And Pregnancy: A Working Mom’s Guide
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    The Best Homemade Masks for Face (keep the Pimples Away)
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="single-post.html">
-                                    10 Life-Changing Hacks Every Working Mom Should Know
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
+                        {hydrated && sideBarPosts.map((value, index) => (
+
+                            <SingleSidebar  tag={value.tag} title={value.title} id={value.id} key={index}/>
+
+                        ))}
                     </div>
                 </div>
             </div>

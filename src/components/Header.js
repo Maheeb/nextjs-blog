@@ -8,7 +8,7 @@ function Header() {
                 <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
                     <Link href="/" className="logo d-flex align-items-center">
                         {/* Uncomment the line below if you also wish to use an image logo */}
-                        {/* <img src="assets/img/logo.png" alt=""> */}
+                        {/* <img store="assets/img/logo.png" alt=""> */}
                         <h1>ZenBlog</h1>
                     </Link>
                     <nav id="navbar" className="navbar">

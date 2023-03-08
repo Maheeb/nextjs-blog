@@ -839,7 +839,7 @@ section {
   background: rgba(var(--color-black-rgb), 0.1);
 }
 
-/* custom tab nav on sidebar */
+/* custom tab nav on common */
 .aside-block {
   margin-bottom: 30px;
 }

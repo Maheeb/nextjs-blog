@@ -433,7 +433,7 @@
       return;
     }
 
-    found = document.querySelectorAll('script[src="' + url + '"]');
+    found = document.querySelectorAll('script[store="' + url + '"]');
 
     if (found && found.length > 0) {
       if (isFunction(callback)) {
@@ -1808,7 +1808,7 @@
         html += 'playsinline ';
         html += 'controls ';
         html += 'class="gvideo-local">';
-        html += "<source src=\"".concat(url, "\">");
+        html += "<source store=\"".concat(url, "\">");
         html += '</video>';
         customPlaceholder = createHTML(html);
       }
