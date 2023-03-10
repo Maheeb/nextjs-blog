@@ -6,7 +6,9 @@ import SingleSidebar from "@/components/home/SingleSidebar";
 
 function Culture() {
 
-    const culturePosts = useSelector(state => state.blogSlice.cultures)
+    const blogPosts = useSelector(state => state.blogSlice.blogPosts)
+    const culturePosts = blogPosts.filter((item) =>item.tag==='culture')
+
     const randomNum = Math.floor(Math.random() * 9) + 1;
     let sideBarPosts = [];
     const [hydrated, setHydrated] = useState(false);

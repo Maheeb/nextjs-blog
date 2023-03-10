@@ -2,11 +2,23 @@ import PostContent from "@/components/Single/PostContent";
 import SideBar from "@/components/Single/SideBar";
 import {useRouter} from "next/router";
 import SidebarPanel from "@/components/common/SidebarPanel";
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 
-function SinglePost() {
+function SinglePost({ slug }) {
     const router = useRouter();
-    const { slug } = router.query;
-    console.log(slug)
+    // const { slug } = router.query;
+    const blogPosts = useSelector(state => state.blogSlice.blogPosts)
+    const blogPost = blogPosts.filter(post => post.id==slug)
+
+    const [selectedPost, setSelectedPost] = useState(blogPosts);
+    const [hydrated, setHydrated] = useState(false);
+    useEffect(() => {
+        // const blogPost = blogPosts.filter(post => post.id==slug)
+        // setSelectedPost(blogPost)
+        setHydrated(true);
+    },[])
+    // console.log(selectedPost)
     return(
         <>
             <main id="main">
@@ -16,11 +28,12 @@ function SinglePost() {
                             <div className="col-md-9 post-content" data-aos="fade-up">
                                 <div className="single-post">
                                     <div className="post-meta">
-                                        <span className="date">Business</span>{" "}
+                                        <span className="date">Business</span>
                                         <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                     </div>
                                     <h1 className="mb-5">
-                                        13 Amazing Poems from Shel Silverstein with Valuable Life Lessons
+                                        {/*{hydrated && selectedPost[0].title}*/}
+                                        { blogPost[0].title}
                                     </h1>
                                     <p>
                                         <span className="firstcharacter">L</span>orem ipsum dolor sit,
@@ -299,4 +312,13 @@ function SinglePost() {
 
     )
 }
-export default SinglePost;
+export default SinglePost
+
+export async function getServerSideProps(context) {
+    const { slug } = context.query;
+    return {
+        props: {
+            slug, // Pass slug to the component as a prop
+        },
+    };
+}

@@ -4,7 +4,9 @@ import Link from "next/link";
 import SingleSidebar from "@/components/home/SingleSidebar";
 
 function Business() {
-    const businessPosts = useSelector(state => state.blogSlice.business)
+    const blogPosts = useSelector(state => state.blogSlice.blogPosts)
+    // const businessPosts = useSelector(state => state.blogSlice.business)
+    const businessPosts = blogPosts.filter((item) =>item.tag==='business')
     const randomNum = Math.floor(Math.random() * 9) + 1;
     let sideBarPosts = [];
     const [hydrated, setHydrated] = useState(false);

@@ -1,4 +1,17 @@
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import Link from "next/link";
+
 function SidebarList() {
+    const popularPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='p')
+    const trendingPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='t')
+    const latestPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='l')
+    console.log(trendingPosts)
+    const randomNum = Math.floor(Math.random() * 9) + 1;
+    const [hydrated, setHydrated] = useState(false);
+    useEffect(() => {
+        setHydrated(true);
+    },[])
     return(
         <>
             <div className="aside-block">
@@ -58,80 +71,21 @@ function SidebarList() {
                         role="tabpanel"
                         aria-labelledby="pills-popular-tab"
                     >
-                        <div className="post-entry-1 border-bottom">
+                        { popularPosts.map((value, index) => (
+
+                            <div className="post-entry-1 border-bottom">
                             <div className="post-meta">
-                                <span className="date">Sport</span>
                                 <span className="mx-1">•</span> <span>Jul 5th '22</span>
                             </div>
                             <h2 className="mb-2">
-                                <a href="#">
-                                    How to Avoid Distraction and Stay Focused During Video
-                                    Calls?
-                                </a>
+                                <Link href={`/post/${value.id}`}>
+                                    {value.title}
+
+                                </Link>
                             </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
                         </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>{" "}
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    17 Pictures of Medium Length Hair in Layers That Will
-                                    Inspire Your New Haircut
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Culture</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    9 Half-up/half-down Hairstyles for Long and Medium Hair
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    Life Insurance And Pregnancy: A Working Mom’s Guide
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    The Best Homemade Masks for Face (keep the Pimples Away)
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    10 Life-Changing Hacks Every Working Mom Should Know
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
+
+                        ))}
                     </div>
 
                     <div
@@ -140,80 +94,24 @@ function SidebarList() {
                         role="tabpanel"
                         aria-labelledby="pills-trending-tab"
                     >
-                        <div className="post-entry-1 border-bottom">
+
+                        { trendingPosts.map((value, index) => (
+
+                            <div className="post-entry-1 border-bottom">
                             <div className="post-meta">
-                                <span className="date">Lifestyle</span>
                                 <span className="mx-1">•</span> <span>Jul 5th '22</span>
                             </div>
                             <h2 className="mb-2">
-                                <a href="#">
-                                    17 Pictures of Medium Length Hair in Layers That Will
-                                    Inspire Your New Haircut
-                                </a>
+                                <Link href={`/post/${value.id}`}>
+                                    {value.title}
+
+                                </Link>
                             </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
                         </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Culture</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    9 Half-up/half-down Hairstyles for Long and Medium Hair
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    Life Insurance And Pregnancy: A Working Mom’s Guide
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Sport</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    How to Avoid Distraction and Stay Focused During Video
-                                    Calls?
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    The Best Homemade Masks for Face (keep the Pimples Away)
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    10 Life-Changing Hacks Every Working Mom Should Know
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
+
+                        ))}
+
+
                     </div>
 
                     <div
@@ -222,80 +120,20 @@ function SidebarList() {
                         role="tabpanel"
                         aria-labelledby="pills-latest-tab"
                     >
+                        { latestPosts.map((value, index) => (
                         <div className="post-entry-1 border-bottom">
                             <div className="post-meta">
-                                <span className="date">Lifestyle</span>
                                 <span className="mx-1">•</span> <span>Jul 5th '22</span>
                             </div>
                             <h2 className="mb-2">
-                                <a href="#">
-                                    Life Insurance And Pregnancy: A Working Mom’s Guide
-                                </a>
+                                <Link href={`/post/${value.id}`}>
+                                    {value.title}
+
+                                </Link>
                             </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
                         </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Business</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    The Best Homemade Masks for Face (keep the Pimples Away)
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    10 Life-Changing Hacks Every Working Mom Should Know
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Sport</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    How to Avoid Distraction and Stay Focused During Video
-                                    Calls?
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Lifestyle</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    17 Pictures of Medium Length Hair in Layers That Will
-                                    Inspire Your New Haircut
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
-                        <div className="post-entry-1 border-bottom">
-                            <div className="post-meta">
-                                <span className="date">Culture</span>
-                                <span className="mx-1">•</span> <span>Jul 5th '22</span>
-                            </div>
-                            <h2 className="mb-2">
-                                <a href="#">
-                                    9 Half-up/half-down Hairstyles for Long and Medium Hair
-                                </a>
-                            </h2>
-                            <span className="author mb-3 d-block">Jenny Wilson</span>
-                        </div>
+                        ))}
+
                     </div>
                 </div>
             </div>

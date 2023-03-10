@@ -284,7 +284,6 @@ function SideBar() {
                             <div classname="post-entry-1 border-bottom">
                                 <div classname="post-meta">
                                     <span classname="date">Culture</span>
-                                    {"{"}" "{"}"}
                                     <span classname="mx-1">•</span> <span>Jul 5th '22</span>
                                 </div>
                                 <h2 classname="mb-2">
