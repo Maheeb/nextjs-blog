@@ -6,7 +6,7 @@ function SidebarList() {
     const popularPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='p')
     const trendingPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='t')
     const latestPosts = useSelector(state => state.blogSlice.blogPosts).filter(item => item.ptl==='l')
-    console.log(trendingPosts)
+    // console.log(trendingPosts)
     const randomNum = Math.floor(Math.random() * 9) + 1;
     const [hydrated, setHydrated] = useState(false);
     useEffect(() => {

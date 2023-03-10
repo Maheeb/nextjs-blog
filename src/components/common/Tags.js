@@ -1,33 +1,22 @@
+import Link from "next/link";
+
 function Tags() {
+
     return(
         <>
             <div className="aside-block">
                 <h3 className="aside-title">Tags</h3>
                 <ul className="aside-tags list-unstyled">
                     <li>
-                        <a href="category.html">Business</a>
+                        <Link href="/single/business">Business</Link>
                     </li>
                     <li>
-                        <a href="category.html">Culture</a>
+                        <Link href="/single/culture">Culture</Link>
                     </li>
                     <li>
-                        <a href="category.html">Sport</a>
+                        <Link href="/single/lifeStyle">LifeStyle</Link>
                     </li>
-                    <li>
-                        <a href="category.html">Food</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Politics</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Celebrity</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Startups</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Travel</a>
-                    </li>
+
                 </ul>
             </div>
         </>

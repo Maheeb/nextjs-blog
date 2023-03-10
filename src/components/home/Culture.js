@@ -32,7 +32,7 @@ function Culture() {
                 <div className="section-header d-flex justify-content-between align-items-center mb-5">
                     <h2>Culture</h2>
                     <div>
-                        <Link href="single/category" className="more">
+                        <Link href="single/culture" className="more">
                             See All Culture
                         </Link>
                     </div>

@@ -1,32 +1,40 @@
 import SidebarPanel from "@/components/common/SidebarPanel";
+import {useSelector} from "react-redux";
+import Link from "next/link";
 
-function CategoryPosts() {
+function CategoryPosts({slug}) {
+
+    const allPosts = useSelector(state => state.blogSlice.blogPosts)
+    const blogPosts = allPosts.filter(post => post.tag==slug)
+    const capitalized = slug.charAt(0).toUpperCase() + slug.slice(1);
+
+    console.log(blogPosts)
     return(
         <main id="main">
             <section>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-9" data-aos="fade-up">
-                            <h3 className="category-title">Category: Business</h3>
+                            <h3 className="category-title">Category: {capitalized}</h3>
 
+                            { blogPosts.map((value, index) => (
                             <div className="d-md-flex post-entry-2 half">
-                                <a href="single-post.html" className="me-4 thumbnail">
+                                <Link href={`/post/${value.id}`} className="me-4 thumbnail">
                                     <img
                                         src="/img/post-landscape-6.jpg"
                                         alt=""
                                         className="img-fluid"
                                     />
-                                </a>
+                                </Link>
                                 <div>
                                     <div className="post-meta">
-                                        <span className="date">Culture</span>
+                                        <span className="date">{capitalized}</span>
                                         <span className="mx-1">•</span> <span>Jul 5th '22</span>
                                     </div>
                                     <h3>
-                                        <a href="single-post.html">
-                                            What is the son of Football Coach John Gruden, Deuce Gruden
-                                            doing Now?
-                                        </a>
+                                        <Link href={`/post/${value.id}`} >
+                                            {value.title}
+                                        </Link>
                                     </h3>
                                     <p>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -37,6 +45,7 @@ function CategoryPosts() {
                                     </p>
                                 </div>
                             </div>
+                            ))}
 
 
 
@@ -50,3 +59,11 @@ function CategoryPosts() {
     )
 }
 export default CategoryPosts;
+export async function getServerSideProps(context) {
+    const { slug } = context.query;
+    return {
+        props: {
+            slug, // Pass slug to the component as a prop
+        },
+    };
+}
