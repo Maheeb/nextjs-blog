@@ -6,9 +6,11 @@ function CategoryPosts({slug}) {
 
     const allPosts = useSelector(state => state.blogSlice.blogPosts)
     const blogPosts = allPosts.filter(post => post.tag==slug)
+
+    // console.log(slug)
+
     const capitalized = slug.charAt(0).toUpperCase() + slug.slice(1);
 
-    console.log(blogPosts)
     return(
         <main id="main">
             <section>
@@ -18,7 +20,7 @@ function CategoryPosts({slug}) {
                             <h3 className="category-title">Category: {capitalized}</h3>
 
                             { blogPosts.map((value, index) => (
-                            <div className="d-md-flex post-entry-2 half">
+                            <div className="d-md-flex post-entry-2 half" key={index}>
                                 <Link href={`/post/${value.id}`} className="me-4 thumbnail">
                                     <img
                                         src="/img/post-landscape-6.jpg"

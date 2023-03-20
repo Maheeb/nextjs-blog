@@ -1,6 +1,49 @@
 import Link from "next/link";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
 function Header() {
+    const [inputText, setInputText] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const [isPost, setIsPost] = useState(false);
+    const blogPosts = useSelector(state => state.blogSlice.blogPosts)
+    const { asPath } = useRouter()
+
+    const checkUrl =asPath.includes("post") ?'/post':"post";
+    // console.log(checkUrl)
+    let inputHandler = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+    let clearSearch = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText("");
+    };
+
+    const filteredData = blogPosts.filter((el) => {
+        //if no input the return the original
+        if (inputText === '') {
+            return el;
+        }
+        //return the item which contains the user input
+        else {
+            return el.title.toLowerCase().includes(inputText)
+        }
+    })
+
+    useEffect(()=>{
+        if (inputText === '')
+        {
+            setIsOpen(false)
+        }
+        else
+        {
+            setIsOpen(true)
+        }
+
+    },[inputText])
+
     return(
         <>
             {/* ======= Header ======= */}
@@ -16,55 +59,10 @@ function Header() {
                             <li>
                                 <Link href="/">Blog</Link>
                             </li>
-                            <li>
-                                <a href="single-post.html">Single Post</a>
-                            </li>
-                            <li className="dropdown">
-                                <a href="category.html">
-                                    <span>Categories</span>{" "}
-                                    <i className="bi bi-chevron-down dropdown-indicator" />
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="search-result.html">Search Result</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 1</a>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#">
-                                            <span>Deep Drop Down</span>{" "}
-                                            <i className="bi bi-chevron-down dropdown-indicator" />
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Deep Drop Down 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 5</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 4</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            {/*<li>*/}
+                            {/*    <a href="single-post.html">Single Post</a>*/}
+                            {/*</li>*/}
+
                             <li>
                                 <Link href="/about">About</Link>
                             </li>
@@ -90,14 +88,33 @@ function Header() {
                         <i className="bi bi-list mobile-nav-toggle" />
                         {/* ======= Search Form ======= */}
                         <div className="search-form-wrap js-search-form-wrap">
-                            <form action="search-result.html" className="search-form">
+                            <form action="#" className="search-form">
                                 <span className="icon bi-search" />
-                                <input type="text" placeholder="Search" className="form-control" />
+                                <input type="text" placeholder="Search" className="form-control"   onChange={inputHandler}/>
                                 <button className="btn js-search-close">
-                                    <span className="bi-x" />
+                                    <span className="bi-x" onChange={clearSearch}/>
                                 </button>
                             </form>
+
                         </div>
+                        <div>
+                            {isOpen && filteredData.length > 0 && (
+                                <ul style={{ position: "absolute", zIndex: 1,marginTop:'15px',marginLeft:'-380px',backgroundColor:'#f9f9f9',minWidth:'608px',boxShadow:' 0px 8px 16px 0px rgba(0,0,0,0.2)',listStyle:'none' }}>
+                                    {filteredData.map((suggestion, index) => (
+                                        <li key={index}>
+                                            {/*<Link href={`post/${suggestion.id}`}*/}
+                                            <Link href={`${checkUrl}/${suggestion.id}`}
+                                                  style={{color:'black',padding:'12px 16px',textDecoration:'none',display:'block'}}
+                                            >
+                                                {suggestion.title}
+                                            </Link>
+
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+
                         {/* End Search Form */}
                     </div>
                 </div>
@@ -107,3 +124,11 @@ function Header() {
     )
 }
 export default Header;
+export async function getServerSideProps(context) {
+    const { slug } = context.query;
+    return {
+        props: {
+            slug, // Pass slug to the component as a prop
+        },
+    };
+}

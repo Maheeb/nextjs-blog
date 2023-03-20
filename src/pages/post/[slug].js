@@ -18,7 +18,7 @@ function SinglePost({ slug }) {
         // setSelectedPost(blogPost)
         setHydrated(true);
     },[])
-    // console.log(selectedPost)
+    // console.log(blogPost)
     return(
         <>
             <main id="main">
