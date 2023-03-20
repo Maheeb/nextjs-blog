@@ -178,7 +178,7 @@ function PostSection() {
                                     <ul className="trending-post">
                                         {hydrated && sideBarPosts.map((value, index) => (
 
-                                        <li>
+                                        <li key={index}>
                                             <Link href={`/post/${slug_id}`}>
                                                 <span className="number">1</span>
                                                 <h3>
