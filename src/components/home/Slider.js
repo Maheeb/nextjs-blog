@@ -9,10 +9,11 @@ function Slider() {
                                 <div className="swiper-wrapper">
                                     <div className="swiper-slide">
                                         <a
-                                            href="single-post.html"
+                                            href="#"
                                             className="img-bg d-flex align-items-end"
                                             style={{
-                                                backgroundImage: 'url("/img/post-slide-1.jpg")'
+                                                backgroundImage: 'url("/img/post-slide-1.jpg")',
+                                                cursor:'initial'
                                             }}
                                         >
                                             <div className="img-bg-inner">
@@ -31,7 +32,7 @@ function Slider() {
                                     </div>
                                     <div className="swiper-slide">
                                         <a
-                                            href="single-post.html"
+                                            href="#"
                                             className="img-bg d-flex align-items-end"
                                             style={{
                                                 backgroundImage: 'url("/img/post-slide-2.jpg")'
@@ -54,7 +55,7 @@ function Slider() {
                                     </div>
                                     <div className="swiper-slide">
                                         <a
-                                            href="single-post.html"
+                                            href="#"
                                             className="img-bg d-flex align-items-end"
                                             style={{
                                                 backgroundImage: 'url("/img/post-slide-3.jpg")'
@@ -77,7 +78,7 @@ function Slider() {
                                     </div>
                                     <div className="swiper-slide">
                                         <a
-                                            href="single-post.html"
+                                            href="#"
                                             className="img-bg d-flex align-items-end"
                                             style={{
                                                 backgroundImage: 'url("/img/post-slide-4.jpg")'
