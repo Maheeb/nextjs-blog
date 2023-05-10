@@ -73,13 +73,13 @@ function Header() {
                     </nav>
                     {/* .navbar */}
                     <div className="position-relative">
-                        <a href="#" className="mx-2">
+                        <a href="https://www.facebook.com/" className="mx-2">
                             <span className="bi-facebook" />
                         </a>
-                        <a href="#" className="mx-2">
+                        <a href="https://twitter.com/" className="mx-2">
                             <span className="bi-twitter" />
                         </a>
-                        <a href="#" className="mx-2">
+                        <a href="https://www.instagram.com/" className="mx-2">
                             <span className="bi-instagram" />
                         </a>
                         <a href="#" className="mx-2 js-search-open">
